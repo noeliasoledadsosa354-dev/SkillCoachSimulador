@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillCoach AR | Entrenamiento laboral</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="topbar">
+    <div class="container-fluid app-width d-flex align-items-center justify-content-between">
+      <a class="brand" href="#" aria-label="SkillCoach AR inicio"><span class="brand-mark"><i class="bi bi-stars"></i></span> SkillCoach <b>AR</b></a>
+      <div class="d-flex align-items-center gap-2"><span class="status-dot"></span><span class="small muted">MVP · Modo demostración</span></div>
+    </div>
+  </nav>
+
+  <main class="container-fluid app-width py-4 py-lg-5">
+    <div id="aiStatus" class="alert alert-secondary py-2 small mb-3" role="status">
+      <i class="bi bi-cpu me-2"></i>Modo demostración: el análisis local funciona; la IA se activa al configurar tu API Key y abrir la aplicación desde el servidor.
+    </div>
+
+    <header class="hero mb-4">
+      <div>
+        <div class="eyebrow">PLATAFORMA DE ENTRENAMIENTO PROFESIONAL</div>
+        <h1>Prepará tu próxima <span>entrevista laboral.</span></h1>
+        <p class="muted mb-0">Practicá, recibí orientación y descubrí cómo fortalecer tu perfil profesional.</p>
+      </div>
+      <div class="hero-chip"><i class="bi bi-shield-check"></i> Tu práctica, a tu ritmo</div>
+    </header>
+
+    <section class="stepper mb-4" aria-label="Etapas del proceso">
+      <div class="step active" data-step="1"><span>1</span><div><b>Tu perfil</b><small>Personalización</small></div></div>
+      <div class="step-line"></div>
+      <div class="step" data-step="2"><span>2</span><div><b>Entrevista</b><small>Simulación</small></div></div>
+      <div class="step-line"></div>
+      <div class="step" data-step="3"><span>3</span><div><b>Análisis</b><small>Evaluación</small></div></div>
+      <div class="step-line"></div>
+      <div class="step" data-step="4"><span>4</span><div><b>Tu plan</b><small>Próximos pasos</small></div></div>
+    </section>
+
+    <!-- ETAPA 1 -->
+    <section id="profileView" class="view">
+      <div class="section-heading">
+        <div><div class="eyebrow">ETAPA 01 · PERSONALIZACIÓN</div><h2>Contanos sobre tu objetivo</h2><p class="muted">Usaremos esta información para adaptar las preguntas de práctica.</p></div>
+        <div class="heading-icon"><i class="bi bi-person-vcard"></i></div>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <div class="panel">
+            <div class="panel-title"><i class="bi bi-briefcase"></i> Perfil profesional</div>
+            <form id="profileForm">
+              <div class="mb-3"><label for="career" class="form-label">Carrera o formación</label><input id="career" class="form-control" placeholder="Ej.: Licenciatura en Comercialización" required></div>
+              <div class="mb-3"><label for="job" class="form-label">Puesto al que querés postularte</label><input id="job" class="form-control" placeholder="Ej.: Analista de Marketing" required></div>
+              <div class="row g-3">
+                <div class="col-md-6"><label for="experience" class="form-label">Experiencia</label><select id="experience" class="form-select"><option>Sin experiencia</option><option selected>Junior (0–2 años)</option><option>Semi Senior (2–5 años)</option><option>Senior (más de 5 años)</option></select></div>
+                <div class="col-md-6"><label for="level" class="form-label">Dificultad</label><select id="level" class="form-select"><option>Básica</option><option selected>Intermedia</option><option>Avanzada</option></select></div>
+              </div>
+              <div class="upload-grid mt-4">
+                <div class="upload-box"><i class="bi bi-file-earmark-person"></i><b>Tu CV</b><small>PDF, DOC o DOCX</small><input id="cvFile" type="file" accept=".pdf,.doc,.docx"></div>
+                <div class="upload-box"><i class="bi bi-file-earmark-text"></i><b>Aviso laboral</b><small>PDF, DOC o TXT</small><input id="jobFile" type="file" accept=".pdf,.doc,.docx,.txt"></div>
+              </div>
+              <div id="fileStatus" class="file-status muted small mt-2">Podés continuar sin adjuntar archivos. En esta versión se registra el nombre del archivo, pero no se extrae su contenido.</div>
+              <button class="btn btn-primary w-100 mt-4" type="submit">Personalizar mi entrevista <i class="bi bi-arrow-right ms-2"></i></button>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <aside class="side-card h-100">
+            <div class="side-illustration"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="coach-avatar"><i class="bi bi-robot"></i></div><span class="spark spark-a">✦</span><span class="spark spark-b">✧</span></div>
+            <h3>Una práctica enfocada en vos</h3>
+            <p class="muted">SkillCoach AR propone preguntas relacionadas con el puesto que te interesa y te ayuda a preparar respuestas más claras y estructuradas.</p>
+            <ul class="feature-list"><li><i class="bi bi-check-circle-fill"></i> Preguntas adaptadas al puesto</li><li><i class="bi bi-check-circle-fill"></i> Práctica por voz o texto</li><li><i class="bi bi-check-circle-fill"></i> Recomendaciones para mejorar</li></ul>
+            <div class="privacy-note"><i class="bi bi-lock"></i> Tus archivos permanecen en esta sesión local; no se envían a un servidor.</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ETAPA 2 -->
+    <section id="interviewView" class="view hidden">
+      <div class="section-heading"><div><div class="eyebrow">ETAPA 02 · ENTREVISTA</div><h2>Tu entrevista simulada</h2><p class="muted" id="interviewSubtitle">Practicá como si estuvieras frente a un entrevistador.</p></div><span class="live-pill"><i class="bi bi-circle-fill"></i> SESIÓN ACTIVA</span></div>
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="panel interviewer-panel">
+            <div class="avatar-stage"><div class="avatar-glow"></div><div class="avatar"><i class="bi bi-person-bounding-box"></i></div><div class="avatar-label"><span class="status-dot"></span> Alex · Entrevistador virtual</div></div>
+            <h3 class="text-center mt-3">Hola, ¡empecemos!</h3>
+            <p class="muted text-center small">Soy Alex y voy a acompañarte durante esta práctica.</p>
+            <div class="camera-wrap mt-3"><video id="cameraVideo" autoplay muted playsinline></video><div id="cameraPlaceholder"><i class="bi bi-camera-video"></i><span>Cámara desactivada</span></div></div>
+            <button id="cameraBtn" class="btn btn-outline-secondary w-100 mt-2"><i class="bi bi-camera-video me-2"></i>Activar cámara (opcional)</button>
+            <p class="tiny muted mt-2 mb-0">La cámara es opcional. El MVP no realiza reconocimiento facial ni evalúa emociones.</p>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="panel interview-panel">
+            <div class="d-flex justify-content-between align-items-center mb-3"><span class="tag" id="questionCount">PREGUNTA 1 DE 5</span><span class="muted small"><i class="bi bi-clock me-1"></i><span id="timer">00:00</span></span></div>
+            <div class="progress mb-4"><div id="questionProgress" class="progress-bar" style="width:20%"></div></div>
+            <div class="question-card"><div class="eyebrow mb-2">ALEX TE PREGUNTA</div><h3 id="questionText">Contame brevemente sobre vos y tu recorrido profesional.</h3></div>
+            <div class="voice-area">
+              <div class="voice-orb" id="voiceOrb"><i class="bi bi-mic-fill"></i></div>
+              <div class="waveform" id="waveform"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div id="voiceStatus" class="muted small mt-2">Podés escribir o responder usando el micrófono.</div>
+              <button id="voiceBtn" class="btn btn-outline-info btn-sm mt-3"><i class="bi bi-mic me-2"></i>Responder por voz</button>
+            </div>
+            <label for="answer" class="form-label mt-3">Tu respuesta</label>
+            <textarea id="answer" class="form-control answer-box" rows="4" placeholder="Escribí tu respuesta o usá el micrófono..."></textarea>
+            <div class="d-flex justify-content-between align-items-center mt-3 gap-2"><button id="endInterviewBtn" class="btn btn-outline-secondary">Finalizar ahora</button><button id="nextQuestionBtn" class="btn btn-primary">Guardar y continuar <i class="bi bi-arrow-right ms-2"></i></button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ETAPA 3 -->
+    <section id="analysisView" class="view hidden">
+      <div class="section-heading"><div><div class="eyebrow">ETAPA 03 · ANÁLISIS</div><h2>Revisemos tu desempeño</h2><p class="muted">Un resumen orientativo generado a partir de tus respuestas registradas.</p></div><div class="heading-icon"><i class="bi bi-cpu"></i></div></div>
+      <div class="panel analysis-loading" id="analysisLoading"><div class="spinner"></div><h3>Preparando tu informe...</h3><p class="muted">Organizando respuestas y detectando oportunidades de mejora.</p></div>
+      <div id="analysisContent" class="hidden">
+        <div class="row g-3 mb-4">
+          <div class="col-6 col-lg-3"><div class="metric"><span>Desempeño estimado</span><strong id="scoreMetric">--%</strong><small>Indicador orientativo</small></div></div>
+          <div class="col-6 col-lg-3"><div class="metric"><span>Respuestas</span><strong id="answeredMetric">0/5</strong><small>Preguntas completadas</small></div></div>
+          <div class="col-6 col-lg-3"><div class="metric"><span>Muletillas</span><strong id="fillerMetric">0</strong><small>Detectadas en el texto</small></div></div>
+          <div class="col-6 col-lg-3"><div class="metric"><span>Desarrollo</span><strong id="paceMetric" class="metric-word">—</strong><small>Extensión de respuestas</small></div></div>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-7"><div class="panel h-100"><div class="panel-title"><i class="bi bi-chat-square-text"></i> Observaciones</div><div id="analysisFeedback"></div></div></div>
+          <div class="col-lg-5"><div class="panel h-100"><div class="panel-title"><i class="bi bi-list-check"></i> Resumen de respuestas</div><div id="answerSummary" class="answer-summary"></div></div></div>
+        </div>
+        <div class="disclaimer mt-3"><i class="bi bi-info-circle me-2"></i>Este MVP utiliza reglas sencillas sobre el texto ingresado. No es una evaluación psicológica ni un análisis real de tono, emociones, gestos o lenguaje corporal. La IA real se incorporará mediante una integración posterior.</div>
+        <button id="toPlanBtn" class="btn btn-primary mt-4">Ver mi plan de mejora <i class="bi bi-arrow-right ms-2"></i></button>
+      </div>
+    </section>
+
+    <!-- ETAPA 4 -->
+    <section id="planView" class="view hidden">
+      <div class="section-heading"><div><div class="eyebrow">ETAPA 04 · INFORME Y PLAN</div><h2>Tu próximo paso empieza hoy</h2><p class="muted">Un plan breve para convertir la práctica en progreso.</p></div><div class="heading-icon"><i class="bi bi-trophy"></i></div></div>
+      <div class="report-banner"><div><div class="eyebrow">TU INFORME DE PRÁCTICA</div><h2 id="reportTitle">¡Buen trabajo!</h2><p id="reportDescription" class="mb-0">Cada entrevista es una oportunidad para mejorar.</p></div><div class="report-score"><strong id="finalScore">--%</strong><span>desempeño estimado</span></div></div>
+      <div class="row g-4 mt-1">
+        <div class="col-lg-7"><div class="panel"><div class="panel-title"><i class="bi bi-calendar-check"></i> Plan de ejercicios · 5 días</div><div id="dailyPlan" class="daily-plan"></div></div></div>
+        <div class="col-lg-5"><div class="panel"><div class="panel-title"><i class="bi bi-bullseye"></i> Tus objetivos</div><div id="goalList"></div><hr class="divider"><div class="muted small">Perfil de práctica</div><b id="profileSummary" class="d-block mt-1"></b><button id="downloadBtn" class="btn btn-outline-info w-100 mt-4"><i class="bi bi-download me-2"></i>Descargar informe (.txt)</button></div></div>
+      </div>
+      <div class="d-flex flex-wrap gap-2 mt-4"><button id="restartBtn" class="btn btn-primary"><i class="bi bi-arrow-repeat me-2"></i>Nueva entrevista</button><button id="backAnalysisBtn" class="btn btn-outline-secondary">Volver al análisis</button></div>
+    </section>
+
+    <footer class="app-footer mt-5"><span>SkillCoach AR © 2026 · Proyecto integrador universitario</span><span>Entrenamiento responsable · Prototipo MVP</span></footer>
+  </main>
+  <div id="toast" class="toast-message" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
