@@ -1,5 +1,3 @@
-// SkillCoach AR - MVP educativo
-// Los resultados son orientativos y se calculan localmente a partir del texto.
 
 const $ = (id) => document.getElementById(id);
 const views = ["profileView", "interviewView", "analysisView", "planView"];
@@ -423,3 +421,31 @@ window.addEventListener("beforeunload", () => {
   if (cameraStream) cameraStream.getTracks().forEach(track => track.stop());
   stopTimer();
 });
+
+
+// Verificar si el servidor tiene Gemini configurado. La clave nunca se envía al navegador.
+(async () => {
+  const statusText = document.getElementById("aiStatusText");
+  const modeLabel = document.getElementById("modeLabel");
+  const statusBox = document.getElementById("aiStatus");
+  try {
+    const response = await fetch("/api/status");
+    const status = await response.json();
+    if (status.aiConfigured) {
+      statusText.textContent = "IA Gemini conectada. Ya podés realizar una entrevista y recibir una devolución personalizada.";
+      modeLabel.textContent = "IA Gemini · Conectada";
+      statusBox.classList.remove("alert-secondary", "alert-warning");
+      statusBox.classList.add("alert-success");
+    } else {
+      statusText.textContent = "Modo demostración: el análisis local está disponible, pero falta configurar GEMINI_API_KEY en el servidor.";
+      modeLabel.textContent = "MVP · Modo demostración";
+      statusBox.classList.remove("alert-success");
+      statusBox.classList.add("alert-warning");
+    }
+  } catch {
+    statusText.textContent = "No se pudo comprobar la conexión con el servidor. Abrí la aplicación desde su URL publicada o desde localhost.";
+    modeLabel.textContent = "MVP · Sin conexión";
+  }
+})();
+
+
